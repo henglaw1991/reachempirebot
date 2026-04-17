@@ -1,104 +1,200 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>ReachEmpire Bot Signup</title>
-  <style>
-    :root{--bg:#eef3f8;--card:#ffffff;--border:#dbe7f3;--text:#102a43;--muted:#6b7f93;--primary:#1f7aec}
-    body{margin:0;padding:18px;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
-    .card{max-width:760px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:24px;padding:24px;box-shadow:0 8px 24px rgba(16,42,67,.06)}
-    h1{margin:0 0 8px;font-size:28px;text-align:center}
-    .sub{margin:0 0 22px;text-align:center;color:var(--muted)}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-    .full{grid-column:1/-1}
-    label{display:block;margin-bottom:8px;font-size:13px;font-weight:700;color:#5d748c;text-transform:uppercase}
-    input,select{width:100%;height:50px;box-sizing:border-box;border-radius:14px;border:1px solid var(--border);padding:0 14px;font-size:15px;background:#fff}
-    input:focus,select:focus{outline:none;border-color:#7aaef0;box-shadow:0 0 0 3px rgba(31,122,236,.12)}
-    .checkgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .check{display:flex;align-items:center;gap:10px;border:1px solid var(--border);border-radius:14px;padding:14px;background:#f9fcff;font-weight:700}
-    .btn{width:100%;height:54px;border:none;border-radius:16px;background:var(--primary);color:#fff;font-size:16px;font-weight:800;cursor:pointer}
-    .btn:disabled{opacity:.65;cursor:not-allowed}.msg{margin-top:12px;font-size:14px;font-weight:700}.error{color:#c53030}.success{color:#1f7a45}
-    @media (max-width:640px){.grid,.checkgrid{grid-template-columns:1fr}}
-  </style>
+<meta charset="UTF-8">
+<title>Signup - ReachEmpire</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #0b1f3a, #142f5a);
+    color: #333;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.card {
+    background: #fff;
+    padding: 40px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #0b1f3a;
+}
+
+.subtitle {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+}
+
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 13px;
+    margin-bottom: 6px;
+    color: #555;
+}
+
+input, select {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #2d6cdf;
+    outline: none;
+    box-shadow: 0 0 5px rgba(45,108,223,0.3);
+}
+
+.contact-box {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.contact-option {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.contact-option:hover {
+    border-color: #2d6cdf;
+    background: #f5f8ff;
+}
+
+.contact-option input {
+    margin-right: 8px;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #2d6cdf, #1c4bb8);
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 600px) {
+    .row {
+        flex-direction: column;
+    }
+}
+</style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Sign Up Account</h1>
-    <p class="sub">Create your bot account request. Admin will review it and send your license details after approval.</p>
-    <form id="signupForm">
-      <div class="grid">
-        <div><label>First Name</label><input id="first_name" required></div>
-        <div><label>Last Name</label><input id="last_name" required></div>
-        <div>
-          <label>Country</label>
-          <select id="country" required>
-            <option value="">Select country</option>
-            <option value="Cambodia" data-code="+855">Cambodia (+855)</option>
-            <option value="Thailand" data-code="+66">Thailand (+66)</option>
-            <option value="Vietnam" data-code="+84">Vietnam (+84)</option>
-            <option value="Laos" data-code="+856">Laos (+856)</option>
-            <option value="Malaysia" data-code="+60">Malaysia (+60)</option>
-            <option value="Singapore" data-code="+65">Singapore (+65)</option>
-            <option value="China" data-code="+86">China (+86)</option>
-            <option value="Japan" data-code="+81">Japan (+81)</option>
-            <option value="South Korea" data-code="+82">South Korea (+82)</option>
-            <option value="United States" data-code="+1">United States (+1)</option>
-            <option value="United Kingdom" data-code="+44">United Kingdom (+44)</option>
-            <option value="Australia" data-code="+61">Australia (+61)</option>
-          </select>
-        </div>
-        <div><label>Phone</label><input id="phone" required placeholder="+855 12 345 678"></div>
-        <div class="full">
-          <label>Contact Availability</label>
-          <div class="checkgrid">
-            <label class="check"><input type="checkbox" id="has_telegram"> Phone is connected to Telegram</label>
-            <label class="check"><input type="checkbox" id="has_whatsapp"> Phone is connected to WhatsApp</label>
-          </div>
-        </div>
-        <div class="full"><label>Username</label><input id="username" required autocomplete="username"></div>
-        <div><label>Password</label><input id="password" type="password" required autocomplete="new-password"></div>
-        <div><label>Confirm Password</label><input id="confirm_password" type="password" required autocomplete="new-password"></div>
-        <div class="full"><button id="submitBtn" class="btn" type="submit">Submit Signup Request</button><div id="formMessage" class="msg"></div></div>
-      </div>
-    </form>
-  </div>
-<script>
-const form = document.getElementById('signupForm');
-const msg = document.getElementById('formMessage');
-const submitBtn = document.getElementById('submitBtn');
-const countryEl = document.getElementById('country');
-const phoneEl = document.getElementById('phone');
-function setMessage(text, type){ msg.className = 'msg ' + (type || ''); msg.textContent = text; }
-function updatePhoneCode(){ const selected = countryEl.options[countryEl.selectedIndex]; const code = selected?.dataset?.code || ''; const current = phoneEl.value.trim(); if (!code) return; if (!current || current.startsWith('+')) phoneEl.value = code + ' '; }
-countryEl.addEventListener('change', updatePhoneCode);
-form.addEventListener('submit', async (e) => {
-  e.preventDefault(); setMessage('', ''); submitBtn.disabled = true;
-  const payload = {
-    first_name: document.getElementById('first_name').value.trim(),
-    last_name: document.getElementById('last_name').value.trim(),
-    country: countryEl.value,
-    phone: phoneEl.value.trim(),
-    username: document.getElementById('username').value.trim(),
-    password: document.getElementById('password').value,
-    confirm_password: document.getElementById('confirm_password').value,
-    has_telegram: document.getElementById('has_telegram').checked ? 1 : 0,
-    has_whatsapp: document.getElementById('has_whatsapp').checked ? 1 : 0
-  };
-  if (payload.password !== payload.confirm_password) { setMessage('Passwords do not match.', 'error'); submitBtn.disabled = false; return; }
-  try {
-    const res = await fetch('https://admin.reachempirebot.com/api/client-signup/submit', {
-      method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)
-    });
-    const data = await res.json();
-    if (!res.ok || !data.ok) { setMessage(data.error || 'Signup failed.', 'error'); submitBtn.disabled = false; return; }
-    setMessage('Signup request submitted successfully. Admin will review it.', 'success');
-    form.reset();
-  } catch (err) {
-    setMessage('Network error. Please try again.', 'error');
-    submitBtn.disabled = false;
-  }
-});
-</script>
+
+<div class="container">
+<div class="card">
+
+<h1>Create Your Account</h1>
+<p class="subtitle">Submit your request. Admin will review and activate your trading access.</p>
+
+<form>
+
+<div class="row">
+    <div class="input-group">
+        <label>First Name</label>
+        <input type="text">
+    </div>
+
+    <div class="input-group">
+        <label>Last Name</label>
+        <input type="text">
+    </div>
+</div>
+
+<div class="row">
+    <div class="input-group">
+        <label>Country</label>
+        <select>
+            <option>Cambodia</option>
+            <option>Thailand</option>
+            <option>Vietnam</option>
+        </select>
+    </div>
+
+    <div class="input-group">
+        <label>Phone</label>
+        <input type="text" placeholder="+855...">
+    </div>
+</div>
+
+<label>Contact Preference</label>
+<div class="contact-box">
+    <label class="contact-option">
+        <input type="checkbox"> Telegram
+    </label>
+    <label class="contact-option">
+        <input type="checkbox"> WhatsApp
+    </label>
+</div>
+
+<div class="input-group">
+    <label>Username</label>
+    <input type="text">
+</div>
+
+<div class="row">
+    <div class="input-group">
+        <label>Password</label>
+        <input type="password">
+    </div>
+
+    <div class="input-group">
+        <label>Confirm Password</label>
+        <input type="password">
+    </div>
+</div>
+
+<button type="submit">Submit Signup Request</button>
+
+</form>
+
+</div>
+</div>
+
 </body>
 </html>
